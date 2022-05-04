@@ -1,0 +1,268 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Player/Player.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Player/Detection.gd" type="Script" id=3]
+[ext_resource path="res://Player/WhitecolourShader.gdshader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = ExtResource( 4 )
+shader_param/active = false
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 15.25 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "Attack"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 12, 13, 14 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Dash"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31, 32 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Death"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 17, 18, 19, 20, 21 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Falling"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 9, 10 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Jump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Run"
+length = 0.36
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "WallSlide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 34 ]
+}
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 27.25, 12 )
+
+[sub_resource type="CapsuleShape2D" id=11]
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Start"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "Stop"
+length = 0.1
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="PlayerSprite" type="Sprite" parent="."]
+material = SubResource( 14 )
+position = Vector2( 0, -16 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+hframes = 35
+frame = 4
+
+[node name="Colission" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -15 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 9 )
+anims/Dash = SubResource( 7 )
+anims/Death = SubResource( 12 )
+anims/Falling = SubResource( 5 )
+anims/Idle = SubResource( 2 )
+anims/Jump = SubResource( 6 )
+anims/RESET = SubResource( 3 )
+anims/Run = SubResource( 4 )
+anims/WallSlide = SubResource( 8 )
+
+[node name="RightWall" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 1, -13 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 15 )
+
+[node name="LeftWall" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 1, -13 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 15 )
+
+[node name="PlayerAttackBox" type="Area2D" parent="." groups=["PlayerAttack"]]
+visible = false
+position = Vector2( 41, -14 )
+
+[node name="PlayerAttackBox" type="CollisionShape2D" parent="PlayerAttackBox"]
+position = Vector2( -5, 2 )
+shape = SubResource( 10 )
+one_way_collision_margin = 16.1
+
+[node name="Detection" type="Area2D" parent="." groups=["playerDetection"]]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+position = Vector2( 0, -16 )
+shape = SubResource( 11 )
+
+[node name="Timer" type="Timer" parent="Detection"]
+
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 16 )
+anims/Start = SubResource( 15 )
+anims/Stop = SubResource( 17 )
+
+[connection signal="area_entered" from="Detection" to="." method="_on_Detection_area_entered"]
+[connection signal="invincibility_ended" from="Detection" to="." method="_on_Detection_invincibility_ended"]
+[connection signal="invincibility_ended" from="Detection" to="Detection" method="_on_Detection_invincibility_ended"]
+[connection signal="invincibility_started" from="Detection" to="." method="_on_Detection_invincibility_started"]
+[connection signal="invincibility_started" from="Detection" to="Detection" method="_on_Detection_invincibility_started"]
+[connection signal="timeout" from="Detection/Timer" to="Detection" method="_on_Timer_timeout"]
