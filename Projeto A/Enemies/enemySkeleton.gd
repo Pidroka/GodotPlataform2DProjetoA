@@ -7,13 +7,14 @@ enum {
 }
 
 
+
 var motion = Vector2()
 var speed = 0.01
 var gravity = 1
 const UP = Vector2(0, -1)
 var direction = 1
 
-
+#var invinciblePlayer = get_node("res://Player/Detection.gd").get("invincible")
 onready var animationPlayer = $AnimationPlayer
 onready var rayCast2D = $RayCast2D
 var state = MOVE
@@ -24,6 +25,7 @@ func _ready():
 	$RayCast2D.position.x = $CollisionShape2D.shape.get_extents().x * direction
 
 func _physics_process(delta):
+#	print(invinciblePlayer)
 	motion.y += gravity 
 	
 	match state: 
@@ -56,7 +58,7 @@ func attack_state(delta):
 	areasPositions(delta)
 	motion.x = 0
 	$AnimationPlayer.play("Attack")
-
+	
 
 
 	

@@ -39,7 +39,6 @@ onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 var state = MOVE 
 
 func _physics_process(delta):
-	print(motion.y)
 	
 	motion.y += gravity 
 	
@@ -198,3 +197,5 @@ func _on_Detection_invincibility_started(area):
 
 func _on_Detection_invincibility_ended():
 	blinkAnimationPlayer.play("Stop")
+
+

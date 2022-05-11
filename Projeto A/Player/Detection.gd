@@ -4,7 +4,6 @@ var invincible = false setget set_invincible
 
 onready var timer = $Timer
 onready var collisionShape = $CollisionShape2D
-
 signal invincibility_started
 signal invincibility_ended
 
@@ -15,7 +14,7 @@ func set_invincible(value):
 		emit_signal("invincibility_started")
 	else:
 		emit_signal("invincibility_ended")
-		
+	
 func start_invincibility(duration):
 	self.invincible = true
 	timer.start(duration)
