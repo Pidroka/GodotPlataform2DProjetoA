@@ -20,7 +20,7 @@ onready var rayCast2D = $RayCast2D
 var state = MOVE
 
 func _ready():
-	$skeletonSprite.flip_h == true
+	#$skeletonSprite.flip_h == true
 		
 	$RayCast2D.position.x = $CollisionShape2D.shape.get_extents().x * direction
 
@@ -63,15 +63,15 @@ func attack_state(delta):
 
 	
 
-func areasPositions(delta):
+func areasPositions(_delta):
 	if direction == 1:
 		$EnemyView/EnemyViewCollisionShape2D.position.x = 10.625
-		$skeletonSprite.flip_h == false
+		#$skeletonSprite.flip_h == false
 		$HitBox/CollisionShape2D.position.x = 21
 	elif direction == -1:
 		$HitBox/CollisionShape2D.position.x = -21
 		$EnemyView/EnemyViewCollisionShape2D.position.x = -10.625
-		$skeletonSprite.flip_h == true
+		#$skeletonSprite.flip_h == true
 
 
 
