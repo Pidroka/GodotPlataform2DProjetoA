@@ -4,17 +4,17 @@ enum {
 	MOVE, 
 	DASH, 
 	ATTACK,
-	HITTED
+	DEATH
 }
 
 var motion = Vector2()
 var speed = 100
 var jump = -400 
 var gravity = 15 
-var health = 3
+var health = 1
 var actualDamage = 1 
 const UP = Vector2(0, -1)
-
+var restart
 
 
 var jumpNumber = 0
@@ -34,9 +34,12 @@ onready var playerColission = $Colission
 onready var playerAttackBoxCollision = $PlayerAttackBox/PlayerAttackBox
 onready var playerAttackBoxCollisionPosition = $PlayerAttackBox
 onready var blinkAnimationPlayer = $BlinkAnimationPlayer
+onready var reviveLabel = $Revive
 
 # Initial state 
 var state = MOVE 
+func _ready():
+	reviveLabel.visible = false
 
 func _physics_process(delta):
 	
@@ -49,8 +52,8 @@ func _physics_process(delta):
 			dash_state(delta)
 		ATTACK:
 			attack_state(delta)
-		HITTED: 
-			pass
+		DEATH: 
+			death_state(delta)
 			
 	motion = move_and_slide(motion, UP)
 	
@@ -154,6 +157,12 @@ func attack_state(_delta):
 	yield(get_tree().create_timer(0.4), "timeout")	
 	state = MOVE
 	
+func death_state(_delta): 
+	animationPlayer.play("Death")
+	if Input.is_action_just_pressed("ui_reset"):
+		restart = get_tree().reload_current_scene()
+	
+
 func attackBoxPosition():
 	if playerSprite.flip_h == false:
 		playerAttackBoxCollisionPosition.position.x = 40
@@ -170,32 +179,11 @@ func nextToRightWall():
 func nextToLeftWall():
 	return $LeftWall.is_colliding()
 	
-	
-	
-	
+func deathmessage():
+	reviveLabel.visible = true
 
 
 func _on_Detection_area_entered(area):
 	if area.is_in_group("EnemyAttack"):
-		$Detection.start_invincibility(0.8)
-		blinkAnimationPlayer.play("Start")
-		health -= 1
-		get_parent().find_node("UI").find_node("HealthbarSprite").frame -= 1
-	
-	if health <= 0:
-		queue_free()
-		
-		
-
-
-func _on_Detection_invincibility_started(area):
-	if area.is_in_group("EnemyAttack"):
-		blinkAnimationPlayer.play("Start")
-		
-
-
-
-func _on_Detection_invincibility_ended():
-	blinkAnimationPlayer.play("Stop")
-
+		state = DEATH
 
