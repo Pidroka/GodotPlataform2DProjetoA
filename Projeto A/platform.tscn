@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/tilesetObjects.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24.25, 3 )
+
+[node name="platform" type="Area2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, 8 )
+texture = ExtResource( 1 )
+vframes = 3
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0.459, 2.596 )
+z_as_relative = false
+shape = SubResource( 1 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/AttackButton.png-4e01e2b94ce9a000ea2a00308f7bc016.stex"
+path="res://.import/spike-sheet.png-45c7146a2f7ab3253335dac65db6f90b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/AttackButton.png"
-dest_files=[ "res://.import/AttackButton.png-4e01e2b94ce9a000ea2a00308f7bc016.stex" ]
+source_file="res://Sprites/spike-sheet.png"
+dest_files=[ "res://.import/spike-sheet.png-45c7146a2f7ab3253335dac65db6f90b.stex" ]
 
 [params]
 

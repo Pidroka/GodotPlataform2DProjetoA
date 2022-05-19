@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Enemies/enemySkeletonSpriteAtlas.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/CollisionShape2D.gd" type="Script" id=2]
@@ -42,6 +42,33 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Death"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("skeletonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -97,6 +124,9 @@ extents = Vector2( 10.375, 8 )
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 8.0
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 7.5, 16.75 )
+
 [node name="enemySkeleton" type="KinematicBody2D"]
 script = ExtResource( 3 )
 
@@ -108,32 +138,44 @@ frame = 27
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 1 )
+anims/Death = SubResource( 8 )
 anims/RESET = SubResource( 2 )
 anims/Walk = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 2.25 )
 shape = SubResource( 4 )
 script = ExtResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 1, 7.748 )
 rotation = 0.0418879
 enabled = true
 cast_to = Vector2( 0, 9.875 )
 
 [node name="EnemyView" type="Area2D" parent="."]
+visible = false
 
 [node name="EnemyViewCollisionShape2D" type="CollisionShape2D" parent="EnemyView"]
 position = Vector2( 10.625, -8 )
 shape = SubResource( 5 )
 
 [node name="HitBox" type="Area2D" parent="." groups=["EnemyAttack"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 19, -3 )
 shape = SubResource( 6 )
 disabled = true
 
+[node name="hurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
+shape = SubResource( 7 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="EnemyView" to="." method="_on_EnemyView_area_entered"]
 [connection signal="area_exited" from="EnemyView" to="." method="_on_EnemyView_area_exited"]
+[connection signal="area_entered" from="hurtBox" to="." method="_on_hurtBox_area_entered"]
