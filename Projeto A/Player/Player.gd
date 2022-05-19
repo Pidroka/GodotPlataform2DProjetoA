@@ -13,9 +13,12 @@ var jump = -400
 var gravity = 15 
 var health = 1
 var actualDamage = 1 
+var nextLevel
 const UP = Vector2(0, -1)
-var restart
 
+
+var restart
+var restartTranstion = false
 
 var jumpNumber = 0
 var wallJump = 150
@@ -28,6 +31,7 @@ var canDash = false
 var dashing = false
 var canWalk = true
 
+
 onready var animationPlayer = $AnimationPlayer
 onready var playerSprite = $PlayerSprite
 onready var playerColission = $Colission
@@ -39,6 +43,7 @@ onready var reviveLabel = $Revive
 # Initial state 
 var state = MOVE 
 func _ready():
+	restartTranstion = false
 	reviveLabel.visible = false
 
 func _physics_process(delta):
@@ -54,9 +59,7 @@ func _physics_process(delta):
 			attack_state(delta)
 		DEATH: 
 			death_state(delta)
-			
 	motion = move_and_slide(motion, UP)
-	
 	
 func move_state(_delta):
 	playerAttackBoxCollision.disabled = true
@@ -160,8 +163,9 @@ func attack_state(_delta):
 func death_state(_delta): 
 	animationPlayer.play("Death")
 	if Input.is_action_just_pressed("ui_reset"):
+		restartTranstion = true
+		#yield(get_tree().create_timer(0.5), "timeout")	
 		restart = get_tree().reload_current_scene()
-	
 
 func attackBoxPosition():
 	if playerSprite.flip_h == false:
@@ -187,3 +191,13 @@ func _on_Detection_area_entered(area):
 	if area.is_in_group("EnemyAttack"):
 		state = DEATH
 
+
+
+func _on_nextLevel_area_entered(area):
+	nextLevel = get_tree().change_scene("res://levelalfa-1.tscn")
+
+
+
+
+func _on_nextLevel2_area_entered(area):
+	nextLevel = get_tree().change_scene("res://ty4play.tscn")

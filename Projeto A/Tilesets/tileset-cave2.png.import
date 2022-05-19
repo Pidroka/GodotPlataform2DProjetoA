@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/AttackButton.png-4e01e2b94ce9a000ea2a00308f7bc016.stex"
+path="res://.import/tileset-cave2.png-0c1c44390783f514bc5679130ff78108.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/AttackButton.png"
-dest_files=[ "res://.import/AttackButton.png-4e01e2b94ce9a000ea2a00308f7bc016.stex" ]
+source_file="res://Tilesets/tileset-cave2.png"
+dest_files=[ "res://.import/tileset-cave2.png-0c1c44390783f514bc5679130ff78108.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

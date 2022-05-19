@@ -3,7 +3,7 @@ extends KinematicBody2D
 enum {
 	MOVE,
 	ATTACK,
-	HITTED 
+	DEATH
 }
 
 
@@ -33,8 +33,8 @@ func _physics_process(delta):
 			move_state(delta)
 		ATTACK:
 			attack_state(delta)
-		HITTED: 
-			pass
+		DEATH: 
+			death_state(delta)
 			
 	motion = move_and_slide(motion, UP)
 	
@@ -59,9 +59,10 @@ func attack_state(delta):
 	motion.x = 0
 	$AnimationPlayer.play("Attack")
 	
-
-
-	
+func death_state(_delta):
+	motion.x = 0
+	animationPlayer.play("Death")
+		
 
 func areasPositions(_delta):
 	if direction == 1:
@@ -88,3 +89,14 @@ func _on_EnemyView_area_exited(area):
 		yield(get_tree().create_timer(2.5), "timeout")	
 		state = MOVE
 		
+
+
+func _on_hurtBox_area_entered(area):
+	if area.is_in_group("PlayerAttack"):
+		state = DEATH
+		
+
+
+func _on_AnimationPlayer_animation_finished(Death:String):
+	print("Chegou")
+	queue_free()
