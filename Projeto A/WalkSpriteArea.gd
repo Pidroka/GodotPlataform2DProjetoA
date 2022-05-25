@@ -9,7 +9,7 @@ func _ready():
 
 func _on_WalkSpriteArea_body_entered(body):
 	if body.name =="Player":
-		yield(get_tree().create_timer(1.5), "timeout")	
+		#yield(get_tree().create_timer(1.5), "timeout")	
 		walkSprite.show()
 		
 		

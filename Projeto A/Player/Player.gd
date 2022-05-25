@@ -161,6 +161,8 @@ func attack_state(_delta):
 	state = MOVE
 	
 func death_state(_delta): 
+	motion.x = 0
+	motion.y = 0
 	animationPlayer.play("Death")
 	if Input.is_action_just_pressed("ui_reset"):
 		restartTranstion = true
