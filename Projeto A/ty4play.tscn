@@ -6,23 +6,28 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Skeleton" type="Sprite" parent="."]
-position = Vector2( 377, 229 )
+position = Vector2( 470, 335 )
+scale = Vector2( 4.54601, 5.01139 )
 texture = ExtResource( 2 )
 flip_h = true
 hframes = 15
 vframes = 5
 
 [node name="Label" type="Label" parent="."]
-margin_left = 247.0
-margin_top = 165.0
-margin_right = 406.0
-margin_bottom = 196.0
+margin_left = 103.0
+margin_top = 124.0
+margin_right = 358.0
+margin_bottom = 172.0
+rect_scale = Vector2( 2.28803, 2.62935 )
 text = "Obrigado por testar 
-em breve mais updates!!"
+
+ =)"
+align = 1
+valign = 1
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 303, 230 )
-scale = Vector2( 1.56825, 2.15991 )
+position = Vector2( 313, 383 )
+scale = Vector2( 3.44561, 3.3279 )
 texture = ExtResource( 1 )
 hframes = 30
 frame = 6
